@@ -7,27 +7,6 @@ import Image from './Image'
 import Login from './Login'
 import Signup from './Signup'
 
-var element = ''
-
-window.onload = () => {
-    element = document.querySelector('.send-to a')
-    element.addEventListener('click', () => {
-        if (element.id === 'login') {
-            element.id = 'signup'
-        } else {
-            element.id = 'login'
-        }
-    })
-}
-
-function FormControll() {
-    if (element.id === 'login') {
-        return <Login />
-    } else {
-        return <Signup />
-    }
-}
-
 class Form extends Component {
     constructor(props) {
         super(props)
@@ -37,22 +16,22 @@ class Form extends Component {
         }
     }
 
-    changeForm = () => {
-        if (element.id === 'login') {
-            this.setState({currentForm: 'login'})
-        } else {
+    changeForm = event => {
+        if (this.state.currentForm === 'login') {
             this.setState({currentForm: 'signup'})
+        } else {
+            this.setState({currentForm: 'login'})
         }
     }
 
   render() {
     return (
       <div className="container">
-        <div className="form-wrapper">
+        <div className="form-wrapper" form={this.changeForm}>
             <Image />
             {this.state.currentForm === 'login' ? <Login /> : <Signup />}
             <span className="send-to">
-            <a href="#" className="login" id="login" style={{bottom: '20px'}} onClick={this.changeForm}>
+            <a href="#" className="login" style={{bottom: '20px'}} onClick={this.changeForm}>
               {this.state.currentForm === 'login' ? 'Create An Account' : 'Already Have An Account'}
               <sapn className="material-icons">arrow_right_alt</sapn>
             </a>
