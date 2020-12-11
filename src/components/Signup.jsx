@@ -4,7 +4,7 @@ class Signup extends Component {
   render() {
     return (
       <div className="form-sec">
-        <h2 className="form-title title">User Signup</h2>
+        <h2 className="form-title title">User Sign Up</h2>
         <form action="user/singup" method="post">
           <div>
             <span className="material-icons">person</span>
